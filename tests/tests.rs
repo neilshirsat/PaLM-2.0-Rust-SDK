@@ -3,7 +3,7 @@ mod tests {
 
     use palm2_sdk::{
         client::Client,
-        entities::{Message, MessagePrompt, CountMessageTokensRequest, EmbedTextRequest, EmbedTextResponse, GenerateMessageRequest, GenerateMessageResponse, GenerateTextRequest, TextPrompt, ModelInfo, ListInfoResponse, CountMessageTokensResponse},
+        entities::{Message, MessagePrompt, CountMessageTokensRequest, EmbedTextRequest, EmbedTextResponse, GenerateMessageRequest, GenerateMessageResponse, GenerateTextRequest, TextPrompt, ModelInfo, ListInfoResponse, CountMessageTokensResponse, GenerateTextResponse},
         query::{execute, Response, execute_raw},
         resource::Resource,
     };
@@ -12,7 +12,7 @@ mod tests {
     #[tokio::test]
     async fn count_message_tokens() -> Result<(), Box<dyn std::error::Error>> {
         let client = Client::new(
-            |_resource| String::from("AIzaSyAgLiYwA4rsaZrqIs41im5BzJvaBK36J-s"),
+            |_resource| String::from("$API_KEY"),
             None,
             None,
             None,
@@ -53,7 +53,7 @@ mod tests {
     #[tokio::test]
     async fn embed_text() -> Result<(), Box<dyn std::error::Error>> {
         let client = Client::new(
-            |_resource| String::from("AIzaSyAgLiYwA4rsaZrqIs41im5BzJvaBK36J-s"),
+            |_resource| String::from("$API_KEY"),
             None,
             None,
             None,
@@ -83,7 +83,7 @@ mod tests {
     #[tokio::test]
     async fn generate_message() -> Result<(), Box<dyn std::error::Error>> {
         let client = Client::new(
-            |_resource| String::from("AIzaSyAgLiYwA4rsaZrqIs41im5BzJvaBK36J-s"),
+            |_resource| String::from("$API_KEY"),
             None,
             None,
             None,
@@ -131,7 +131,7 @@ mod tests {
     #[tokio::test]
     async fn generate_text() -> Result<(), Box<dyn std::error::Error>> {
         let client = Client::new(
-            |_resource| String::from("AIzaSyAgLiYwA4rsaZrqIs41im5BzJvaBK36J-s"),
+            |_resource| String::from("$API_KEY"),
             None,
             None,
             None,
@@ -157,12 +157,12 @@ mod tests {
             .body(body)
             .build();
 
-        let response: Response<String> = execute_raw(query).await?;
+        let response: Response<GenerateTextResponse> = execute(query).await?;
         //let response: Response = execute(query).await?;
         
         println!("headers: {:?}", response.headers);
         //println!("Output: {}", response.value.candidates[0].output);
-        println!("Output: {}", response.value);
+        println!("Output: {}", response.value.candidates[0].output);
         
         //assert_eq!(response.value.embedding.value, Vec<f32>::new());
 
@@ -172,7 +172,7 @@ mod tests {
     #[tokio::test]
     async fn generate_text_clone() -> Result<(), Box<dyn std::error::Error>> {
         let client = Client::new(
-            |_resource| String::from("AIzaSyAgLiYwA4rsaZrqIs41im5BzJvaBK36J-s"),
+            |_resource| String::from("$API_KEY"),
             None,
             None,
             None,
@@ -213,7 +213,7 @@ mod tests {
     #[tokio::test]
     async fn get_model() -> Result<(), Box<dyn std::error::Error>> {
         let client = Client::new(
-            |_resource| String::from("AIzaSyAgLiYwA4rsaZrqIs41im5BzJvaBK36J-s"),
+            |_resource| String::from("$API_KEY"),
             None,
             None,
             None,
@@ -240,7 +240,7 @@ mod tests {
     #[tokio::test]
     async fn list_models() -> Result<(), Box<dyn std::error::Error>> {
         let client = Client::new(
-            |_resource| String::from("AIzaSyAgLiYwA4rsaZrqIs41im5BzJvaBK36J-s"),
+            |_resource| String::from("$API_KEY"),
             None,
             None,
             None,
