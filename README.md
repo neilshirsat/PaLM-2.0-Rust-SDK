@@ -96,10 +96,4 @@ println!("Raw Output: {}", response.value);
 
 ## Credits
 
-(c) NovX Education (uninc) and its affiliates 
-
-Written by Neil Shirsat (CTO, CIO, CPO, Cheif Architect of NovX Education)
-
-Credits to Aniruddh Anand (CEO of NovX Education) for managing the API that this library was tested on.
-
-Please report any security vunrabilities to <a href="mailto:security@novxedu.com">security@novxedu.com<a>
+(c) Neil Shirsat
